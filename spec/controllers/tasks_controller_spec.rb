@@ -71,11 +71,6 @@ describe TasksController do
         assigns(:task).should be_a(Task)
         assigns(:task).should be_persisted
       end
-
-      it "redirects to the created task" do
-        post :create, :task => valid_attributes
-        response.should redirect_to(Task.last)
-      end
     end
 
     describe "with invalid params" do
@@ -84,13 +79,6 @@ describe TasksController do
         Task.any_instance.stub(:save).and_return(false)
         post :create, :task => {}
         assigns(:task).should be_a_new(Task)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Task.any_instance.stub(:save).and_return(false)
-        post :create, :task => {}
-        response.should render_template("new")
       end
     end
   end

@@ -1,27 +1,10 @@
 <h1>Listing tasks</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= link_to 'New Task', new_task_path, :class => 'new_task' %>
+<div class="tasks">
+  <%= render :partial => "task", :collection => @tasks %>
+</div>
 
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.name %></td>
-    <td><%= task.description %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => 'form', :locals => {:task => Task.new, :type => 'new' } %>
+<%= render :partial => 'form', :locals => {:task => (Task.last || Task.new), :type => 'edit' } %>
 
-<%= render :partial => 'form', :locals => {:task => Task.new } %>
-
-<br />
-
-<%= link_to 'New Task', new_task_path %>

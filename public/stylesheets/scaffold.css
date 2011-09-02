@@ -1,5 +1,6 @@
 body { background-color: #fff; color: #333; }
-
+.task { padding: 5px; border-bottom: 1px solid #333; width: 450px; }
+.task p, .task h3 {margin: 0;}
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;

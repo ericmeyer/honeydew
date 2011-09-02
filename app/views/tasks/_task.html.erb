@@ -1,0 +1,7 @@
+<div class="task">
+  <h3><%= task.name %></h3>
+  <p>
+  <%= link_to 'Edit', task, :class => 'edit_task' %> |
+    <%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %>
+  </p>
+</div>
