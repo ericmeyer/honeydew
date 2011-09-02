@@ -104,7 +104,7 @@ describe TasksController do
       it "redirects to the task" do
         task = Task.create! valid_attributes
         put :update, :id => task.id, :task => valid_attributes
-        response.should redirect_to(task)
+        response.should be_success
       end
     end
 
