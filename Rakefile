@@ -5,3 +5,8 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
 Honeydew::Application.load_tasks
+
+task :default => [:tests]
+
+desc "run all tests"
+task :tests => [:spec, 'jasmine:ci']

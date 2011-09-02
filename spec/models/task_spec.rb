@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Task do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it('valid') { Task.new(:name => "whatever").should be_valid }
+    it('invalid') { Task.new.should_not be_valid }
+  end
 end

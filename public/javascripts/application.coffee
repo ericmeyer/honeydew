@@ -1,6 +1,6 @@
 class window.ModalForm
-  constructor: (@element, @activator) ->
-    console.log("yippee")
+  constructor: (@element) ->
+    @element.dialog(autoOpen: false)
 
 $ ->
-  form = new ModalForm($('form.new_story'), $('form.edit_story'))
+  form = new ModalForm($('form.new_task'))

@@ -20,6 +20,8 @@
 <% end %>
 </table>
 
+<%= render :partial => 'form', :locals => {:task => Task.new } %>
+
 <br />
 
 <%= link_to 'New Task', new_task_path %>

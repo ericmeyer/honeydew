@@ -1,14 +1,15 @@
 (function() {
   window.ModalForm = (function() {
-    function ModalForm(element, activator) {
+    function ModalForm(element) {
       this.element = element;
-      this.activator = activator;
-      console.log("yippee");
+      this.element.dialog({
+        autoOpen: false
+      });
     }
     return ModalForm;
   })();
   $(function() {
     var form;
-    return form = new ModalForm($('form.new_story'), $('form.edit_story'));
+    return form = new ModalForm($('form.new_task'));
   });
 }).call(this);

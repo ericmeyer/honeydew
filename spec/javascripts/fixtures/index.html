@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+</table>
+
+<form accept-charset="UTF-8" action="/tasks" class="new_task" id="new_task" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="qRuG1j7903K7zEUrTU8m/+0EDSb0LvWJnF3VYWBZO/Q=" /></div>
+
+  <div class="field">
+    <label for="task_name">Name</label><br />
+    <input id="task_name" name="task[name]" size="30" type="text" />
+  </div>
+  <div class="field">
+    <label for="task_description">Description</label><br />
+    <textarea cols="40" id="task_description" name="task[description]" rows="20"></textarea>
+  </div>
+  <div class="actions">
+    <input id="task_submit" name="commit" type="submit" value="Create Task" />
+  </div>
+</form>
+
+<br />
+
+<a href="/tasks/new">New Task</a>
+
+
+</body>
+</html>
