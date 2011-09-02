@@ -10,7 +10,7 @@ describe 'Honeydew', ->
     it 'form hidden on page load', ->
       expect(form.element).toBeHidden()
 
-    it 'a.new_task shows the form', ->
+    it 'a.new_task activates the form', ->
       spyOn(form, 'activate')
       $('a.new_task').trigger('click')
       expect(form.activate).toHaveBeenCalled()
@@ -49,35 +49,5 @@ describe 'Honeydew', ->
     it "onSuccess resets the form", ->
       form.onSuccess('<div id="test">FOO</div>')
       expect(form.element.find('input[type="text"]').first().val()).toEqual("")
-
-  describe 'ModalEditForm', ->
-    form = null
-
-    beforeEach -> form = new ModalEditForm($('form.edit_task'), $('a.edit_task'), $('.tasks'))
-    afterEach -> form.closeDialog()
-
-    #sanity spec
-    it 'starts hidden', -> expect(form.element).toBeHidden()
-
-    it 'gets task data on activate', ->
-      spyOn(form, 'getTaskInfo')
-      form.activate(jQuery.Event('click'))
-      expect(form.getTaskInfo).toHaveBeenCalled()
-
-    it 'unbinds submit on activate', ->
-      spyOn(form.element, 'unbind')
-      form.activate(jQuery.Event('click'))
-      expect(form.element.unbind).toHaveBeenCalledWith('submit')
-
-    it 'requests JSON from the url of the link', ->
-      spyOn($, 'getJSON')
-      form.getTaskInfo()
-      expect($.getJSON).toHaveBeenCalled()
-
-    it 'populates the form fields', ->
-      data = { task: {name: 'bruce'} }
-      form.populateForm(data)
-      expect(form.element.find('input#task_name').val()).toEqual("bruce")
-      expect(form.element.attr('method')).toEqual('PUT')
 
 

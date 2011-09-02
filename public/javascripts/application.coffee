@@ -32,25 +32,6 @@ class window.ModalForm
     alert "validation error"
     console.log(json)
 
-class window.ModalEditForm extends window.ModalForm
-  activate: (event) ->
-    @element.unbind('submit')
-    @url = event.target
-    @getTaskInfo()
-    super event
-
-  getTaskInfo: -> $.getJSON @url, (data) => @populateForm(data)
-
-  populateForm: (data) ->
-    @element.attr('action', @url) if @url?
-    @element.attr('method', 'PUT')
-    $.each data.task, (key, value) =>
-      @element.find("input[name='task[#{key}]']").val(value)
-      @element.find("textarea[name='task[#{key}]']").val(value)
-
-  onSuccess: (html) ->
-    alert "implement me!"
 
 $ ->
   form = new ModalForm($('form.new_task'), $('a.new_task'), $('.tasks'))
-  editForm = new ModalEditForm($('form.edit_task'), $('a.edit_task'), $('.tasks'))

@@ -3,7 +3,7 @@
     beforeEach(function() {
       return loadFixtures('index.html');
     });
-    describe('ModalForm', function() {
+    return describe('ModalForm', function() {
       var form;
       form = null;
       beforeEach(function() {
@@ -15,7 +15,7 @@
       it('form hidden on page load', function() {
         return expect(form.element).toBeHidden();
       });
-      it('a.new_task shows the form', function() {
+      it('a.new_task activates the form', function() {
         spyOn(form, 'activate');
         $('a.new_task').trigger('click');
         return expect(form.activate).toHaveBeenCalled();
@@ -54,45 +54,6 @@
       return it("onSuccess resets the form", function() {
         form.onSuccess('<div id="test">FOO</div>');
         return expect(form.element.find('input[type="text"]').first().val()).toEqual("");
-      });
-    });
-    return describe('ModalEditForm', function() {
-      var form;
-      form = null;
-      beforeEach(function() {
-        return form = new ModalEditForm($('form.edit_task'), $('a.edit_task'), $('.tasks'));
-      });
-      afterEach(function() {
-        return form.closeDialog();
-      });
-      it('starts hidden', function() {
-        return expect(form.element).toBeHidden();
-      });
-      it('gets task data on activate', function() {
-        spyOn(form, 'getTaskInfo');
-        form.activate(jQuery.Event('click'));
-        return expect(form.getTaskInfo).toHaveBeenCalled();
-      });
-      it('unbinds submit on activate', function() {
-        spyOn(form.element, 'unbind');
-        form.activate(jQuery.Event('click'));
-        return expect(form.element.unbind).toHaveBeenCalledWith('submit');
-      });
-      it('requests JSON from the url of the link', function() {
-        spyOn($, 'getJSON');
-        form.getTaskInfo();
-        return expect($.getJSON).toHaveBeenCalled();
-      });
-      return it('populates the form fields', function() {
-        var data;
-        data = {
-          task: {
-            name: 'bruce'
-          }
-        };
-        form.populateForm(data);
-        expect(form.element.find('input#task_name').val()).toEqual("bruce");
-        return expect(form.element.attr('method')).toEqual('PUT');
       });
     });
   });
